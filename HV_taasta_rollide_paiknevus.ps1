@@ -2,6 +2,8 @@
 Fikseerib VM rollide paiknevuse Hyper-V klastri hostidel ning taastab (Live Migrate) selle seisu 
 pärast nende rollide liigutamisi (näiteks hostide uuendamine jmt)
 
+Vajab moodulit: FailoverClusters
+Paigalda: Add-WindowsFeature RSAT-Clustering-PowerShell
 Käivita see skript mõnel Hyper-V klastri liikmel
 #>
 
