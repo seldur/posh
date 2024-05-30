@@ -1,0 +1,18 @@
+# Dünaamiline AD-Grupp
+$DynaamilineGrupp = 'K6ik_aktiivsed_t88tajad'
+
+# Alustuseks tühjenda grupp
+Get-ADGroupMember $DynaamilineGrupp | ForEach-Object {Remove-ADGroupMember $DynaamilineGrupp $_ -Confirm:$false}
+
+# Määra tingimused
+$searchProperties = @{
+    Filter      = 'Enabled -eq $true'
+    SearchBase  = 'OU=Töötajad,DC=alamdomeen,DC=domeen,DC=ee'
+    SearchScope = 'OneLevel'
+}
+
+# Lisa tingimustele vastavad liikmed muutujasse
+$KasutajadLisamiseks = Get-ADUser @searchProperties
+
+# Lisa muutujas olevad liikmed gruppi
+Add-ADGroupMember $DynaamilineGrupp $KasutajadLisamiseks
